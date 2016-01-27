@@ -9,6 +9,7 @@
 
     var settings = $.extend({
 			ajaxURL: 				'',
+      ajaxHeaders:    [],
 			postBrowserInfo: 		true,
 			postHTML:				true,
 			postURL:				true,
@@ -518,6 +519,14 @@
 							dataType: 'json',
 							type: 'POST',
 							data: data,
+              beforeSend: function(xhr) {
+                if (settings.ajaxHeaders)
+                {
+                  $.forEach(settings.ajaxHeaders, function (key, value) {
+                    xhr.setRequestHeader(key, value);
+                  });
+                }
+              },
 							success: function() {
 								$('#feedback-module').append(settings.tpl.submitSuccess);
 							},
