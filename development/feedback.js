@@ -522,7 +522,7 @@
               beforeSend: function(xhr) {
                 if (settings.ajaxHeaders)
                 {
-                  $.forEach(settings.ajaxHeaders, function (key, value) {
+                  $.each(settings.ajaxHeaders, function (key, value) {
                     xhr.setRequestHeader(key, value);
                   });
                 }
