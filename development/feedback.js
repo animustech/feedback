@@ -9,7 +9,7 @@
 
     var settings = $.extend({
 			ajaxURL: 				'',
-      ajaxHeader:    '',
+      ajaxHeaders:    {},
 			postBrowserInfo: 		true,
 			postHTML:				true,
 			postURL:				true,
@@ -520,8 +520,10 @@
 							type: 'POST',
 							data: data,
               beforeSend: function(xhr) {
-                if (settings.ajaxHeader) {
-                  xhr.setRequestHeader(settings.ajaxHeader);
+                if (settings.ajaxHeaders) {
+                  $.each(settings.ajaxHeaders, function(key, value) {
+                      xhr.setRequestHeader(key, value);
+                  });
                 }
               },
 							success: function() {
